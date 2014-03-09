@@ -5,8 +5,6 @@
 /* Initialize a cuba_inte_info object */
 cuba_inte_info * init_cuba_inte_info(cuba_inte_info * cii)
 {
-    int         i;
-
     /* zero the memory first */
     memset(cii, 0, sizeof(cuba_inte_info));
 

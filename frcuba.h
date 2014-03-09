@@ -14,11 +14,8 @@
  */
 typedef struct struct_cuba_inte_info
 {
-    struct
-    {
-        int             ndim;
-        int             ncomp;
-    } dim;
+    int             ndim;
+    int             ncomp;
 
     integrand_t     integrand;
     void*           userdata;
@@ -29,29 +26,64 @@ typedef struct struct_cuba_inte_info
     int             seed;
     int             mineval;
     int             maxeval;
-    int             key;
-    int             nstart;
-    int             nincrease;
-    int             nbatch;
-    int             gridno;
     const char*     statefile;
 
-    /* Output. Should not be written by users. */
+    /* Vegas specific options */
+    struct
+    {
+        int             nstart;
+        int             nincrease;
+        int             nbatch;
+        int             gridno;
+    } vegas;
+
+    /* Divonne specific options */
+    struct
+    {
+        int             key1;
+        int             key2;
+        int             key3;
+        int             maxpass;
+        double          border;
+        double          maxchisq;
+        double          mindeviation;
+        int             ngiven;
+        int             ldxgiven;
+        double *        xgiven;
+        int             nextra;
+        peakfinder_t    peakfinder;
+    } divonne;
+
+    /* Suave specific options */
+    struct
+    {
+        int             nnew;
+        double          flatness;
+    } suave;
+
+    /* Cuhre specific options */
+    struct
+    {
+        int             key;
+    } cuhre;
+
+    /* Output. */
     struct
     {
         int             nregions;
         int             neval;
         int             fail;
-        double*         integral;
-        double*         error;
-        double*         prob;
+        double *        integral;
+        double *        error;
+        double *        prob;
     } out;
 } cuba_inte_info;
 
-cuba_inte_info * init_cuba_inte_info(cuba_inte_info * cii, int ndim, int ncomp);
-void destroy_cuba_inte_info(cuba_inte_info * cii);
+cuba_inte_info * init_cuba_inte_info(cuba_inte_info * cii);
 void FR_Cuhre(cuba_inte_info * cii);
-
+void FR_Vegas(cuba_inte_info * cii);
+void FR_Suave(cuba_inte_info * cii);
+void FR_Divonne(cuba_inte_info * cii);
 
 
 #endif /* end of include guard: FRCUBA_H__ */

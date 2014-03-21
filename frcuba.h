@@ -8,6 +8,9 @@
 #include <cuba.h>
 
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 /*
  * Please refer the manual of Cuba to see the meaning of each member of this
  * structure.
@@ -85,5 +88,8 @@ void FR_Vegas(cuba_inte_info * cii);
 void FR_Suave(cuba_inte_info * cii);
 void FR_Divonne(cuba_inte_info * cii);
 
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* end of include guard: FRCUBA_H__ */

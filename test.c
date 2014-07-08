@@ -27,6 +27,8 @@ static int integral_kernel(const int * ndim, const double x[],
     for (i = 0; i < *ndim; ++ i)
         *f *= (limits[2 * i + 1] - limits[2 * i]);
 
+    free(w);
+
     return 0;
 }
 
